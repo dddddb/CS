@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entertainment</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app" class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a>{{username}}</a>
+                        </li>
+                        <li>
+                            <a @click="exit">Exit&nbsp;&nbsp;&nbsp;</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="jumbotron">
+                    <h1>
+                        Welcome To Here!
+                    </h1>
+                    <p>
+                        This is an entertainment platform for CS to make friends, form teams and roll guns
+                    </p>
+                    <p>
+                        <a class="btn btn-primary btn-large" href="index.html">回到首页</a>
+                    </p>
+                </div>
+                <div v-for="value in entertainment">
+                    <h2>
+                        {{value.mname}}
+                    </h2>
+                    <p>
+                        &nbsp;&nbsp;{{value.messages}}
+                    </p>
+                    <div class="btn-group btn-group-xs">
+                        <button type="button" class="btn btn-default" @click="myView(value)">评论</button>
+                    </div>
+                </div>
+                <h2>
+                    Heading
+                </h2>
+                <p>
+                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                </p>
+                <p>
+                    <a class="btn" href="#">View details »</a>
+                </p>
+                <h2>
+                    Heading
+                </h2>
+                <p>
+                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                </p>
+                <p>
+                    <a class="btn" href="#">View details »</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            flag: "",
+            message: "",
+            errorMsg: "",
+            username: "",
+            password: "",
+            entertainment: [],
+            views: []
+        },
+        methods: {
+            myView: function(value) {
+                var that = this;
+                axios({
+                    method: 'post',
+                    url: "http://localhost:8080/queryReviewByr_m_message",
+                    data: {
+                        view: value.messages
+                    },
+                    transformRequest: [function(data) {
+                        let ret = ''
+                        for (let it in data) {
+                            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                        }
+                        return ret
+                    }],
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function(response) {
+                    that.flag = response.data.flag;
+                    console.log(response);
+                    that.message = response.data.data;
+                    that.errorMsg = response.data.errorMsg;
+                    if (that.flag === true) {
+                        that.views = that.message;
+                        sessionStorage.setItem("viewName", value.mname)
+                        sessionStorage.setItem("viewMessage", value.messages)
+                        window.location.href = "comment.html";
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                    /* console.log(response);
+                     that.joke = response.data;*/
+                }, function(err) {
+
+                })
+            },
+            exit: function() {
+                var that = this;
+                axios({
+                    method: 'get',
+                    url: "http://localhost:8080/exit"
+                        /* data: {
+                            username: that.username,
+                            password: that.password,
+                        },
+                        transformRequest: [function(data) {
+                            let ret = ''
+                            for (let it in data) {
+                                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                            }
+                            return ret
+                        }],
+                        header: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        } */
+                }).then(function(response) {
+                    that.flag = response.data.flag;
+                    console.log(response);
+                    that.message = response.data.message;
+                    that.errorMsg = response.data.errorMsg;
+                    if (that.flag === false) {
+                        that.message = null
+                        that.username = null
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                }, function(err) {
+
+                })
+            }
+        }
+    })
+
+
+    function entertainment1() {
+        axios({
+            method: 'get',
+            url: "http://localhost:8080/queryEntertainment"
+        }).then(function(response) {
+            app.flag = response.data.flag;
+            console.log(response);
+            app.message = response.data.data;
+            app.errorMsg = response.data.errorMsg;
+            if (app.flag === true) {
+                app.entertainment = app.message;
+            } else {
+                alert(that.errorMsg)
+            }
+        }, function(err) {
+
+        })
+    }
+
+
+    // 读取cookie
+    function getCookie() {
+        var _this = this;
+        if (document.cookie.length > 0) {
+            // 通过分号(;)作为分割符cookie字符串
+            var arr = document.cookie.split(";");
+            // 循环遍历分隔后字符串数组
+            for (var i = 0; i < arr.length; i++) {
+                // 再将字符串通过等号(=)进行分割
+                var arr2 = arr[i].split('=');
+                // 判断查找相对应的值,replace(/\s*/g, "")表示去掉字符串中的空格
+                if (arr2[0].replace(/\s*/g, "") === 'username') {
+                    let username = arr2[1];
+                    return username;
+                } else if (arr2[0].replace(/\s*/g, "") === 'password') {
+                    _this.password = arr2[1];
+                }
+            }
+        }
+    }
+
+    function changeUsername() {
+        app.username = getCookie();
+    }
+
+    changeUsername();
+    entertainment1();
+</script>
+
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Home</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+    <div class="container" id="app">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" role="navigation">
+
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="index.html">{{username}}</a>
+                            </li>
+                            <li>
+                                <a href="index.html" @click="exit">Exit&nbsp;&nbsp;&nbsp;</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+
+
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                          <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
+                          <span class="icon-bar"></span><span class="icon-bar"></span></button>
+                        <a class="navbar-brand" href="index.html">首页</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href="myhome.html">我的主页</a>
+                            </li>
+                            <li>
+                                <a href="myhome.html">我的发表</a>
+                            </li>
+                            <li>
+                                <a href="comment.html">我的评论</a>
+                            </li>
+                            <li>
+                                <a href="#">我的收藏</a>
+                            </li>
+                    </div>
+
+                </nav>
+                <div class="jumbotron">
+                    <h1>
+                        Welcome To Here!
+                    </h1>
+                    <p>
+                        This is an entertainment platform for CS to make friends, form teams and roll guns
+                    </p>
+                    <p>
+                        <a class="btn btn-primary btn-large" href="index.html">了解更多</a>
+                    </p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group input-group-lg">
+                            <input type="text" id="comment" name="comment" v-model="comment" class="form-control" placeholder="My opinion..." aria-describedby="sizing-addon1">
+                            <span class="input-group-btn">
+                          <input class="btn btn-default" type="button" @click="comment1" value="发表">
+                        </span>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <div class="media" v-for="value in comments">
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <img :src=`${value.photo}` height="30" width="30"> {{value.mname}}
+                    </h4>
+                    <h6>&nbsp;&nbsp;&nbsp; {{value.messages}}</h6>>
+                    <div class="btn-group btn-group-xs">
+                        <button type="button" class="btn btn-default" @click="delete1(value)">删除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            flag: "",
+            message: "",
+            errorMsg: "",
+            username: "",
+            password: "",
+            comment: "",
+            comments: []
+        },
+        methods: {
+            delete1: function(value) {
+                var that = this;
+                axios({
+                    method: 'post',
+                    url: "http://localhost:8080/delete",
+                    data: {
+                        id: value.id
+                    },
+                    transformRequest: [function(data) {
+                        let ret = ''
+                        for (let it in data) {
+                            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                        }
+                        return ret
+                    }],
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function(response) {
+                    that.flag = response.data.flag;
+                    console.log(response);
+                    that.message = response.data.message;
+                    that.errorMsg = response.data.errorMsg;
+                    if (that.flag === true) {
+                        that.comment = that.message;
+                        window.location.href = "myhome.html";
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                    /* console.log(response);
+                     that.joke = response.data;*/
+                }, function(err) {
+
+                })
+            },
+            comment1: function() {
+                var that = this;
+                axios({
+                    method: 'post',
+                    url: "http://localhost:8080/addMessage",
+                    data: {
+                        comment: that.comment
+                    },
+                    transformRequest: [function(data) {
+                        let ret = ''
+                        for (let it in data) {
+                            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                        }
+                        return ret
+                    }],
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function(response) {
+                    that.flag = response.data.flag;
+                    console.log(response);
+                    that.message = response.data.message;
+                    that.errorMsg = response.data.errorMsg;
+                    if (that.flag === true) {
+                        that.comment = that.message;
+                        window.location.href = "myhome.html";
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                    /* console.log(response);
+                     that.joke = response.data;*/
+                }, function(err) {
+
+                })
+            },
+            exit: function() {
+                var that = this;
+                axios({
+                    method: 'get',
+                    url: "http://localhost:8080/exit",
+                    /* data: {
+                        username: that.username,
+                        password: that.password,
+                    },
+                    transformRequest: [function(data) {
+                        let ret = ''
+                        for (let it in data) {
+                            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                        }
+                        return ret
+                    }],
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    } */
+                }).then(function(response) {
+                    that.flag = response.data.flag;
+                    console.log(response);
+                    that.message = response.data.message;
+                    that.errorMsg = response.data.errorMsg;
+                    if (that.flag === false) {
+                        that.message = null
+                        that.username = null
+                            // sessionStorage.setItem("flag", false)
+                        window.location.href = "index.html"
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                    /* console.log(response);
+                     that.joke = response.data;*/
+                }, function(err) {
+
+                })
+            }
+        }
+    })
+
+
+    function comment3() {
+        axios({
+            method: 'get',
+            url: "http://localhost:8080/queryByName"
+        }).then(function(response) {
+            app.flag = response.data.flag;
+            console.log(response);
+            app.message = response.data.data;
+            app.errorMsg = response.data.errorMsg;
+            if (app.flag === true) {
+                app.comments = app.message;
+            } else {
+                alert(that.errorMsg)
+            }
+            /* console.log(response);
+             that.joke = response.data;*/
+        }, function(err) {
+
+        })
+    }
+
+
+    // 读取cookie
+    function getCookie() {
+        var _this = this;
+        if (document.cookie.length > 0) {
+            // 通过分号(;)作为分割符cookie字符串
+            var arr = document.cookie.split(";");
+            // 循环遍历分隔后字符串数组
+            for (var i = 0; i < arr.length; i++) {
+                // 再将字符串通过等号(=)进行分割
+                var arr2 = arr[i].split('=');
+                // 判断查找相对应的值,replace(/\s*/g, "")表示去掉字符串中的空格
+                if (arr2[0].replace(/\s*/g, "") === 'username') {
+                    let username = arr2[1];
+                    return username;
+                } else if (arr2[0].replace(/\s*/g, "") === 'password') {
+                    _this.password = arr2[1];
+                }
+            }
+        }
+    }
+
+    function changeUsername() {
+        app.username = getCookie();
+    }
+
+    changeUsername();
+    comment3();
+</script>
+
+</html>

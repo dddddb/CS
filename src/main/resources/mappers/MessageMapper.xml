@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ldb.mappers.MessageMapper">
+
+
+    <select id="queryAll" resultType="com.ldb.pojo.Message">
+        select * from message
+    </select>
+
+    <select id="queryById" resultType="com.ldb.pojo.Message">
+        select * from message where id=#{id}
+    </select>
+
+    <select id="queryByName" resultType="com.ldb.pojo.Message">
+        select * from message where mname=#{mname}
+    </select>
+
+    <select id="queryByCategorize" resultType="com.ldb.pojo.Message">
+        select * from message where categorize=#{categorize}
+    </select>
+
+
+    <insert id="addMessage">
+        insert into message (mname,messages,categorize) values (#{mname},#{messages},#{categorize})
+    </insert>
+
+    <delete id="delete">
+        delete from message where id=#{id}
+    </delete>
+
+    <select id="findTotalCount" resultType="java.lang.Long">
+       select count(*) from message
+    </select>
+
+    <select id="queryPage" resultType="com.ldb.pojo.Message">
+        select * from message  limit #{start} , #{pageSize}
+    </select>
+
+    <select id="queryCategorize" resultType="com.ldb.pojo.Message">
+        select * from message where categorize=#{categorize}
+    </select>
+
+</mapper>

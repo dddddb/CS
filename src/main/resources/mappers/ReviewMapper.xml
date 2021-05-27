@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ldb.mappers.ReviewMapper">
+
+
+    <select id="queryAll" resultType="com.ldb.pojo.Review">
+        select * from review
+    </select>
+
+
+
+    <select id="queryByr_m_message" resultType="com.ldb.pojo.Review">
+        select * from review where r_m_message=#{message}
+    </select>
+
+
+    <insert id="addReview">
+        insert into review (r_name,r_message,r_m_message) values (#{name},#{message},#{r_m_message})
+    </insert>
+
+    <delete id="delete">
+        delete from review where r_id=#{id}
+    </delete>
+
+</mapper>

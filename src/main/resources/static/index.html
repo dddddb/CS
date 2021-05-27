@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CS</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .item>img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="carousel slide" id="carousel-247299">
+                        <ol class="carousel-indicators">
+                            <li class="active" data-slide-to="0" data-target="#carousel-247299">
+                            </li>
+                            <li data-slide-to="1" data-target="#carousel-247299">
+                            </li>
+                            <li data-slide-to="2" data-target="#carousel-247299">
+                            </li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img alt="" src="https://i03piccdn.sogoucdn.com/d4bfde64fdd42e45" />
+                                <div class="carousel-caption">
+                                    <h4>
+                                        First Thumbnail label
+                                    </h4>
+                                    <p>
+                                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img alt="" src="https://i01piccdn.sogoucdn.com/80001be5ab4dfb88" />
+                                <div class="carousel-caption">
+                                    <h4>
+                                        Second Thumbnail label
+                                    </h4>
+                                    <p>
+                                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img alt="" src="https://i01piccdn.sogoucdn.com/abbc77895b39d1c3" />
+                                <div class="carousel-caption">
+                                    <h4>
+                                        Third Thumbnail label
+                                    </h4>
+                                    <p>
+                                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                    </p>
+                                </div>
+                            </div>
+                        </div> <a class="left carousel-control" href="#carousel-247299" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-247299" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                    </div>
+                    <nav class="navbar navbar-default" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                            <a v-show="flag1" class="navbar-brand" href="login.html">登录</a>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active">
+                                    <a @click="match1">赛事</a>
+                                </li>
+                                <li>
+                                    <a @click="entertainment1">娱乐</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">战绩<strong class="caret"></strong></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#">近三天</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">上一局</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">本赛季</a>
+                                        </li>
+                                        <li class="divider">
+                                        </li>
+                                        <li>
+                                            <a href="#">超神时刻</a>
+                                        </li>
+                                        <li class="divider">
+                                        </li>
+                                        <li>
+                                            <a href="#">缘分</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <form class="navbar-form navbar-left" role="search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" />
+                                </div> <button type="submit" class="btn btn-default">搜索</button>
+                            </form>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a href="myhome.html">{{username}}</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的<strong class="caret"></strong></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="myhome.html">发表</a>
+                                        </li>
+                                        <li>
+                                            <a href="comment.html">评论</a>
+                                        </li>
+                                        <li class="divider">
+                                        </li>
+                                        <li>
+                                            <a href="#">其他</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </nav>
+                    <div class="jumbotron well">
+                        <h1>
+                            Welcome To Here!
+                        </h1>
+                        <p>
+                            This is an entertainment platform for CS to make friends, form teams and roll guns
+                        </p>
+                        <p>
+                            <a class="btn btn-primary btn-large" href="index.html">了解更多</a>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-lg">
+                                <input type="text" name="comment" class="form-control" placeholder="My opinion..." aria-describedby="sizing-addon1">
+                                <span class="input-group-btn">
+                              <button class="btn btn-default" type="button" @click="comment1">发表</button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="tabbable" id="tabs-517785">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#panel-366068" data-toggle="tab">热门话题</a>
+                            </li>
+                            <li>
+                                <a href="#panel-395616" data-toggle="tab">最新赛事</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="panel-366068">
+                                <p>
+                                    热门话题
+                                </p>
+                            </div>
+                            <div class="tab-pane" id="panel-395616">
+                                <p>
+                                    赛事资讯
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-header">
+                        <h1>
+                            社区广场 <small>最新资讯</small>
+                        </h1>
+                    </div>
+                    <div class="media" v-for="value in pages">
+                        <!-- <div class="media" v-for="value in allComments"> -->
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <img :src=`${value.photo}` height="30" width="30"> {{value.mname}}
+                            </h4>&nbsp;&nbsp;&nbsp; {{value.messages}}
+                        </div>
+                        <div class="btn-group btn-group-xs">
+                            <button type="button" class="btn btn-default" @click="myView(value)">评论</button>
+                        </div>
+                    </div>
+                    <ul class="pagination">
+                        <li>
+                            <a href="#">Prev</a>
+                        </li>
+                        <li>
+                            <a @click="page1">1</a>
+                        </li>
+                        <li>
+                            <a @click="page2">2</a>
+                        </li>
+                        <li>
+                            <a @click="page3">3</a>
+                        </li>
+                        <li>
+                            <a @click="page4">4</a>
+                        </li>
+                        <li>
+                            <a @click="page5">5</a>
+                        </li>
+                        <li>
+                            <a href="#">Next</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            flag1: "",
+            flag: "",
+            message: "",
+            errorMsg: "",
+            username: "",
+            password: "",
+            SignIn: "登录",
+            allComments: [],
+            views: [],
+            id: "",
+            flag2: "",
+            message2: "",
+            errorMsg2: "",
+            count: "",
+            pages: [],
+        },
+        // 在页面加载时执行
+        mounted: function() {
+            console.log("加载cookie");
+            myCount();
+            firstPage();
+        },
+        methods: {
+            page1: function() {
+                var that = this;
+                axios({
+                    method: 'post',
+                    url: "http://localhost:8080/queryAll2",
+                    data: {
+                        currentPage: 1,
+                        pageSize: 10
+                    },
+                    transformRequest: [function(data) {
+                        let ret = ''
+                        for (let it in data) {
+                            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                        }
+                        return ret
+                    }],
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function(response) {
+                    app.flag2 = response.data.flag;
+                    console.log(response);
+                    app.message2 = response.data.data;
+                    app.errorMsg2 = response.data.errorMsg;
+                    if (app.flag2 === true) {
+                        app.pages = app.message2;
+                        // window.location.href = "index.html";
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                }, function(err) {
+
+                })
+            },
+
+            page2: function() {
+                var that = this;
+                axios({
+                    method: 'post',
+                    url: "http://localhost:8080/queryAll2",
+                    data: {
+                        currentPage: 2,
+                        pageSize: 10
+                    },
+                    transformRequest: [function(data) {
+                        let ret = ''
+                        for (let it in data) {
+                            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                        }
+                        return ret
+                    }],
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function(response) {
+                    app.flag2 = response.data.flag;
+                    console.log(response);
+                    app.message2 = response.data.data;
+                    app.errorMsg2 = response.data.errorMsg;
+                    if (app.flag2 === true) {
+                        app.pages = app.message2;
+                        // window.location.href = "index.html";
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                }, function(err) {
+
+                })
+            },
+            page3: function() {
+                var that = this;
+                axios({
+                    method: 'post',
+                    url: "http://localhost:8080/queryAll2",
+                    data: {
+                        currentPage: 3,
+                        pageSize: 10
+                    },
+                    transformRequest: [function(data) {
+                        let ret = ''
+                        for (let it in data) {
+                            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                        }
+                        return ret
+                    }],
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function(response) {
+                    app.flag2 = response.data.flag;
+                    console.log(response);
+                    app.message2 = response.data.data;
+                    app.errorMsg2 = response.data.errorMsg;
+                    if (app.flag2 === true) {
+                        app.pages = app.message2;
+                        // window.location.href = "index.html";
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                }, function(err) {
+
+                })
+            },
+            page4: function() {
+                var that = this;
+                axios({
+                    method: 'post',
+                    url: "http://localhost:8080/queryAll2",
+                    data: {
+                        currentPage: 4,
+                        pageSize: 10
+                    },
+                    transformRequest: [function(data) {
+                        let ret = ''
+                        for (let it in data) {
+                            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                        }
+                        return ret
+                    }],
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function(response) {
+                    app.flag2 = response.data.flag;
+                    console.log(response);
+                    app.message2 = response.data.data;
+                    app.errorMsg2 = response.data.errorMsg;
+                    if (app.flag2 === true) {
+                        app.pages = app.message2;
+                        // window.location.href = "index.html";
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                }, function(err) {
+
+                })
+            },
+            page5: function() {
+                var that = this;
+                axios({
+                    method: 'post',
+                    url: "http://localhost:8080/queryAll2",
+                    data: {
+                        currentPage: 5,
+                        pageSize: 10
+                    },
+                    transformRequest: [function(data) {
+                        let ret = ''
+                        for (let it in data) {
+                            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                        }
+                        return ret
+                    }],
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function(response) {
+                    app.flag2 = response.data.flag;
+                    console.log(response);
+                    app.message2 = response.data.data;
+                    app.errorMsg2 = response.data.errorMsg;
+                    if (app.flag2 === true) {
+                        app.pages = app.message2;
+                        // window.location.href = "index.html";
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                }, function(err) {
+
+                })
+            },
+            checkFlag: function() {
+                if (sessionStorage.getItem("flag") === true && app.username !== null) {
+
+                    app.flag1 = false
+                    return false
+                } else {
+                    app.flag1 = true
+                    return true
+                }
+            },
+
+            myView: function(value) {
+                var that = this;
+                axios({
+                    method: 'post',
+                    url: "http://localhost:8080/queryReviewByr_m_message",
+                    data: {
+                        view: value.messages
+                    },
+                    transformRequest: [function(data) {
+                        let ret = ''
+                        for (let it in data) {
+                            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                        }
+                        return ret
+                    }],
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function(response) {
+                    that.flag = response.data.flag;
+                    console.log(response);
+                    that.message = response.data.data;
+                    that.errorMsg = response.data.errorMsg;
+                    if (that.flag === true) {
+                        that.views = that.message;
+                        sessionStorage.setItem("viewName", value.mname)
+                        sessionStorage.setItem("viewMessage", value.messages)
+                        window.location.href = "comment.html";
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                    /* console.log(response);
+                     that.joke = response.data;*/
+                }, function(err) {
+
+                })
+            },
+            comment1: function() {
+                window.location.href = "myhome.html";
+                /*                 var that = this;
+                                axios({
+                                    method: 'get',
+                                    url: "http://localhost:8080/addMessage"
+                                }).then(function(response) {
+                                    that.flag = response.data.flag;
+                                    console.log(response);
+                                    that.message = response.data.message;
+                                    that.errorMsg = response.data.errorMsg;
+                                    if (that.flag === true) {
+                                        that.comment = that.message;
+                                        window.location.href = "myhome.html";
+                                    } else {
+                                        alert(that.errorMsg)
+                                    }
+                                }, function(err) {
+
+                                }) */
+            },
+            match1: function() {
+                var that = this;
+                axios({
+                    method: 'get',
+                    url: "http://localhost:8080/queryMatch"
+                }).then(function(response) {
+                    that.flag = response.data.flag;
+                    console.log(response);
+                    that.message = response.data.message;
+                    that.errorMsg = response.data.errorMsg;
+                    if (that.flag === true) {
+                        that.match = that.message;
+                        window.location.href = "match.html";
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                    /* console.log(response);
+                     that.joke = response.data;*/
+                }, function(err) {
+
+                })
+            },
+
+            entertainment1: function() {
+                var that = this;
+                axios({
+                    method: 'get',
+                    url: "http://localhost:8080/queryEntertainment"
+                }).then(function(response) {
+                    that.flag = response.data.flag;
+                    console.log(response);
+                    that.message = response.data.message;
+                    that.errorMsg = response.data.errorMsg;
+                    if (that.flag === true) {
+                        that.match = that.message;
+                        window.location.href = "entertainment.html";
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                }, function(err) {
+
+                })
+            },
+
+
+            check: function() {
+                var that = this;
+                axios({
+                    method: 'get',
+                    url: "http://localhost:8080/check",
+                }).then(function(response) {
+                    that.flag = response.data.flag;
+                    console.log(response);
+                    that.message = response.data.message;
+                    that.errorMsg = response.data.errorMsg;
+                    if (that.flag === true) {
+                        window.location.href = 'myhome.html';
+                    } else {
+                        alert(that.errorMsg)
+                    }
+                    /* console.log(response);
+                     that.joke = response.data;*/
+                }, function(err) {
+
+                })
+            }
+        }
+    })
+
+    function query() {
+        axios({
+            method: 'get',
+            url: "http://localhost:8080/queryAll"
+        }).then(function(response) {
+            app.flag = response.data.flag;
+            console.log(response);
+            app.message = response.data.data;
+            app.errorMsg = response.data.errorMsg;
+            if (app.flag === true) {
+                app.allComments = app.message;
+            } else {
+                alert(that.errorMsg)
+            }
+            /* console.log(response);
+             that.joke = response.data;*/
+        }, function(err) {
+
+        })
+    }
+
+    query();
+
+    function firstPage() {
+        var that = this;
+        axios({
+            method: 'post',
+            url: "http://localhost:8080/queryPage",
+            data: {
+                id: 1,
+                currentPage: 1,
+                pageSize: 10
+            },
+            transformRequest: [function(data) {
+                let ret = ''
+                for (let it in data) {
+                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                }
+                return ret
+            }],
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function(response) {
+            app.flag2 = response.data.flag;
+            console.log(response);
+            app.message2 = response.data.data;
+            app.errorMsg2 = response.data.errorMsg;
+            if (app.flag2 === true) {
+                app.pages = app.message2;
+                // window.location.href = "index.html";
+            } else {
+                alert(that.errorMsg)
+            }
+        }, function(err) {
+
+        })
+    }
+
+    function myCount() {
+        axios({
+            method: 'get',
+            url: "http://localhost:8080/findTotalCount",
+
+            params: {
+                id: 1
+            },
+            /* transformRequest: [function(data) {
+                let ret = ''
+                for (let it in data) {
+                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                }
+                return ret
+            }],
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            } */
+        }).then(function(response) {
+            app.flag = response.data.flag;
+            console.log(response);
+            app.message = response.data.data;
+            app.errorMsg = response.data.errorMsg;
+            if (app.flag === true) {
+                app.count = app.message
+                    // window.location.href = "index.html";
+            } else {
+                alert(that.errorMsg)
+            }
+        }, function(err) {
+
+        })
+    }
+
+    function getCookie() {
+        var _this = this;
+        if (document.cookie.length > 0) {
+            // 通过分号(;)作为分割符cookie字符串
+            var arr = document.cookie.split(";");
+            // 循环遍历分隔后字符串数组
+            for (var i = 0; i < arr.length; i++) {
+                // 再将字符串通过等号(=)进行分割
+                var arr2 = arr[i].split('=');
+                // 判断查找相对应的值,replace(/\s*/g, "")表示去掉字符串中的空格
+                if (arr2[0].replace(/\s*/g, "") === 'username') {
+                    let username = arr2[1];
+                    return username;
+                } else if (arr2[0].replace(/\s*/g, "") === 'password') {
+                    _this.password = arr2[1];
+                }
+            }
+        }
+    }
+
+
+    function changeUsername() {
+        app.username = getCookie();
+        console.log(this.getCookie.username)
+    }
+
+
+    changeUsername();
+
+    function checkFlag() {
+        if ("true" === sessionStorage.getItem("flag") && app.username !== null) {
+
+            app.flag1 = false
+            return true
+        } else {
+            app.flag1 = true
+            return false
+        }
+    }
+    checkFlag();
+</script>
+
+</html>
