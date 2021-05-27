@@ -8,23 +8,23 @@
 
 未登录
 
-![image](https://user-images.githubusercontent.com/76245359/119779925-cb313300-befb-11eb-8ce9-4450ca76725f.png)
+![未登录状态](https://user-images.githubusercontent.com/76245359/119779925-cb313300-befb-11eb-8ce9-4450ca76725f.png)
 
-登录![登录.png](https://i.loli.net/2021/05/27/D35UjAlupBwK1Ng.png)
+登录![登录状态](https://gitee.com/li_dong_b/img/raw/master/img/20210527180030.png)
 
 **登陆注册**
 
-![登陆界面.png](https://i.loli.net/2021/05/27/7pINz5XS9PsdKWx.png)
+![登录](https://gitee.com/li_dong_b/img/raw/master/img/20210527180101.png)
 
-![注册.png](https://i.loli.net/2021/05/27/JiUF5DzNvtYd9Ou.png)
+![注册](https://gitee.com/li_dong_b/img/raw/master/img/20210527180118.png)
 
 **发表信息**
 
-![发表信息.png](https://i.loli.net/2021/05/27/anFLNItBXHdsEgx.png)
+![发表信息](https://gitee.com/li_dong_b/img/raw/master/img/20210527180143.png)
 
 **评论**
 
-![评论.png](https://i.loli.net/2021/05/27/7XcyCImqZVDuY31.png)
+![评论](https://gitee.com/li_dong_b/img/raw/master/img/20210527180158.png)
 
 
 
@@ -35,3 +35,5 @@
 因为只是一个简单的项目，所以数据库只是用了一些简单的操作
 
 头像都是用的默认
+
+而前端部分是直接套用模板，因为自己对前端不是很熟悉，所以只是简单的实现
